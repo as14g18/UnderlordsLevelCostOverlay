@@ -9,6 +9,12 @@ from PIL import Image, ImageGrab
 import PIL.ImageOps
 
 
+def change_widget_colour(widget, colour):
+    p = widget.palette()
+    p.setColor(widget.backgroundRole(), colour)
+    widget.setPalette(p)
+
+
 class mymainwindow(QtWidgets.QMainWindow):
     def __init__(self):
         # Setting up overlay settings
@@ -27,6 +33,7 @@ class mymainwindow(QtWidgets.QMainWindow):
         self.label = QtWidgets.QLabel(self)
         self.label.move(16,16)
         self.label.setStyleSheet("font: 18pt Helvetica; color: black;")
+        change_widget_colour(self, QtCore.Qt.red)
 
         self.image = None
         self.BB_top_left = None
@@ -39,13 +46,21 @@ class mymainwindow(QtWidgets.QMainWindow):
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_F2:
+            if not self.BB_top_right:
+                change_widget_colour(self, QtCore.Qt.yellow)
+            else:
+                change_widget_colour(self, QtCore.Qt.green)
             cursor = QtGui.QCursor()
             self.BB_top_left = cursor.pos().x(), cursor.pos().y()
         if event.key() == QtCore.Qt.Key_F3:
+            if not self.BB_top_left:
+                change_widget_colour(self, QtCore.Qt.yellow)
+            else:
+                change_widget_colour(self, QtCore.Qt.green)
             cursor = QtGui.QCursor()
             self.BB_top_right = cursor.pos().x(), cursor.pos().y()
         if event.key() == QtCore.Qt.Key_F6:
-            self.label.setText("bruh")
+            self.label.setText("?")
 
     def mousePressEvent(self, event):
         self.offset = event.pos()
@@ -79,8 +94,12 @@ class mymainwindow(QtWidgets.QMainWindow):
         return False
 
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
+pytesseract.pytesseract.tesseract_cmd = r"Tesseract-OCR\tesseract.exe"
+"""
+image = image = ImageGrab.grab(bbox=(0,0,500,500))
+OCRImage = pytesseract.image_to_string(image)
+print(OCRImage)
+"""
 
 print("=================")
 print("OVERLAY DISPLAYED")

@@ -70,12 +70,12 @@ class mymainwindow(QtWidgets.QMainWindow):
             self.image = self.image.convert('L')
             self.image = PIL.ImageOps.invert(self.image)
             OCRImage = pytesseract.image_to_string(self.image)
-            splitOCRImage = re.findall("(\d*)/(\d*)", OCRImage)[0]
-            if len(splitOCRImage) != 2:
+            splitOCRImage = re.findall("(\d*)/(\d*)", OCRImage)
+            if len(splitOCRImage) != 1 or len(splitOCRImage)[0] != 2:
                 self.label.setText("?")
             else: 
                 # print(self.BB_top_left, self.BB_top_right, OCRImage, splitOCRImage)
-                self.label.setText(str(ceil(((int(splitOCRImage[1]) - int(splitOCRImage[0])) / 4)) * 5))
+                self.label.setText(str(ceil(((int(splitOCRImage[0][1]) - int(splitOCRImage[0][0])) / 4)) * 5))
         
     def mouseMoveEvent(self, event):
         x=event.globalX()
@@ -95,11 +95,6 @@ class mymainwindow(QtWidgets.QMainWindow):
 
 
 pytesseract.pytesseract.tesseract_cmd = r"Tesseract-OCR\tesseract.exe"
-"""
-image = image = ImageGrab.grab(bbox=(0,0,500,500))
-OCRImage = pytesseract.image_to_string(image)
-print(OCRImage)
-"""
 
 print("=================")
 print("OVERLAY DISPLAYED")

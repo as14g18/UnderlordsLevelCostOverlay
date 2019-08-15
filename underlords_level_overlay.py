@@ -40,9 +40,6 @@ class mymainwindow(QtWidgets.QMainWindow):
         self.BB_top_right = None
         
         self.show()
-    
-    def mouseDoubleClickEvent(self, event):
-        QtGui.qApp.quit()
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_F2:
@@ -71,12 +68,12 @@ class mymainwindow(QtWidgets.QMainWindow):
             self.image = PIL.ImageOps.invert(self.image)
             OCRImage = pytesseract.image_to_string(self.image)
             splitOCRImage = re.findall("(\d*)/(\d*)", OCRImage)
-            print(splitOCRImage)
+            # print(splitOCRImage)
             if len(splitOCRImage) != 1 or len(splitOCRImage[0]) != 2:
                 self.label.setText("?")
             else:
                 # print(self.BB_top_left, self.BB_top_right, OCRImage, splitOCRImage)
-                print(splitOCRImage)
+                # print(splitOCRImage)
                 self.label.setText(str(ceil(((int(splitOCRImage[0][1]) - int(splitOCRImage[0][0])) / 4)) * 5))
         
     def mouseMoveEvent(self, event):

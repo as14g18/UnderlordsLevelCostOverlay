@@ -15,7 +15,7 @@ Please read the usage instructions before using the application.
 Use the following command after opening a command window in the directory with all the files. You may wish to first create a virtual environment.
 
 ```
-pip install --user --requirement requirements.txt
+pip install -r requirements.txt
 ```
 
 After that, simply run the application.

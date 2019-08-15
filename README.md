@@ -1,6 +1,6 @@
 # UnderlordsLevelCostOverlay
 
-A simple overlay application that calulates the amount of gold required to level in the Valve game Dota Underlords with a single click.
+A simple overlay application that uses OCR to calulate the amount of gold required to level in the Valve game Dota Underlords with a single click.
 
 Please read the usage instructions before using the application.
 

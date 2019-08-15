@@ -34,3 +34,5 @@ python3 underlords_level_overlay.py
 - Do the same for the bottom right corner, and press F3. The square should turn green, meaning it is now ready to be used. (see image below for a better visualisation).
 - If the square does not change colour, it means the overlay window is not focused. Simply click it once to focus it.
 - To calculate the cost of levelling up, make sure the shop is open and click on the green square. The cost should appear.
+
+![Instructions](instructions.png)

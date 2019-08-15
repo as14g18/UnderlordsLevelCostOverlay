@@ -71,10 +71,12 @@ class mymainwindow(QtWidgets.QMainWindow):
             self.image = PIL.ImageOps.invert(self.image)
             OCRImage = pytesseract.image_to_string(self.image)
             splitOCRImage = re.findall("(\d*)/(\d*)", OCRImage)
-            if len(splitOCRImage) != 1 or len(splitOCRImage)[0] != 2:
+            print(splitOCRImage)
+            if len(splitOCRImage) != 1 or len(splitOCRImage[0]) != 2:
                 self.label.setText("?")
-            else: 
+            else:
                 # print(self.BB_top_left, self.BB_top_right, OCRImage, splitOCRImage)
+                print(splitOCRImage)
                 self.label.setText(str(ceil(((int(splitOCRImage[0][1]) - int(splitOCRImage[0][0])) / 4)) * 5))
         
     def mouseMoveEvent(self, event):

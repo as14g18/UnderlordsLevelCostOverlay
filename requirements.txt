@@ -1,4 +1,4 @@
-Pillow==6.1.0
+Pillow==6.2.0
 PyQt5==5.13.0
 PyQt5-sip==4.19.18
 pytesseract==0.2.7
